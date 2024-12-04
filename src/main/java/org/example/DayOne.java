@@ -8,6 +8,8 @@ import java.util.List;
 
 public class DayOne {
 
+    private static final String INPUT_PATH = "src/main/resources/inputDayOne.txt";
+
     public static int measureDistance(List<Integer> first, List<Integer> second) {
         Collections.sort(first);
         Collections.sort(second);
@@ -19,9 +21,23 @@ public class DayOne {
         return sum;
     }
 
-    public static void readInput(List<Integer> first, List<Integer> second, Path filePath) {
+    public static int countSimilarityScore(List<Integer> first, List<Integer> second) {
+        int score = 0;
+        for(int i = 0; i < first.size(); i++) {
+            int counter = 0;
+            for(int j = 0; j < second.size(); j++) {
+                if(first.get(i).equals(second.get(j))) {
+                    counter++;
+                }
+            }
+            score += first.get(i) * counter;
+        }
+        return score;
+    }
+
+    public static void readInput(List<Integer> first, List<Integer> second) {
         try {
-            List<String> lines = Files.readAllLines(filePath);
+            List<String> lines = Files.readAllLines(Path.of(INPUT_PATH));
             for(String line : lines) {
                 String [] columns = line.split("   ");
                 if(columns.length == 2) {
