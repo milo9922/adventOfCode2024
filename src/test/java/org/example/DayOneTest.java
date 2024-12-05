@@ -1,4 +1,5 @@
-import org.example.DayOne;
+package org.example;
+
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
